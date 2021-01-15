@@ -46,7 +46,6 @@ commands:
     steps:
       - run:
           name: Install akoi
-          shell: /bin/bash -eu -o pipefail
           command: |
             OS=linux
             if [ "$(uname)" == Darwin ]; then

@@ -14,7 +14,7 @@ jobs:
       - run:
           name: install git
           command: |
-            apk add git
+            apk add git curl
       - checkout
       - akoi
       - run:

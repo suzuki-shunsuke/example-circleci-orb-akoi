@@ -53,7 +53,6 @@ commands:
             fi
             install_dir=$(dirname "<< parameters.install_path >>")
             test -d "$install_dir" || mkdir "$install_dir"
-            version=<< parameters.version >>
-            curl --fail -L "https://github.com/suzuki-shunsuke/akoi/releases/download/<< parameters.version >>/akoi_${version##v}_${OS}_amd64" -o "$install_path"
+            curl --fail -L "https://github.com/suzuki-shunsuke/akoi/releases/download/<< parameters.version >>/akoi_$(echo << parameters.version>> | sed "s/^v//")_${OS}_amd64" -o "$install_path"
             chmod a+x "$install_path"
             "$install_path" install <<# parameters.config >>-c "<< parameters.config >>"<</ parameters.config >>

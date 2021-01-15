@@ -1,0 +1,56 @@
+---
+# akoi - binary version control system
+# https://github.com/suzuki-shunsuke/akoi
+bin_path: ".akoi/pkgs/{{.Name}}/{{.Version}}/{{.Name}}"
+link_path: ".akoi/bin/{{.Name}}"
+packages:
+  github-comment:
+    url: 'https://github.com/suzuki-shunsuke/{{.Name}}/releases/download/{{.Version}}/{{.Name}}_{{trimPrefix "v" .Version}}_{{.OS}}_{{.Arch}}.tar.gz'
+    version: v2.0.1 # renovate: depName=suzuki-shunsuke/github-comment
+    files:
+    - name: github-comment
+      archive: "{{.Name}}"
+  conftest:
+    url: https://github.com/open-policy-agent/conftest/releases/download/{{.Version}}/conftest_{{trimPrefix "v" .Version}}_linux_x86_64.tar.gz
+    version: v0.23.0 # renovate: depName=open-policy-agent/conftest
+    files:
+    - name: conftest
+      archive: conftest
+  ci-info:
+    url: 'https://github.com/suzuki-shunsuke/{{.Name}}/releases/download/{{.Version}}/{{.Name}}_{{trimPrefix "v" .Version}}_{{.OS}}_{{.Arch}}.tar.gz'
+    version: v1.0.0 # renovate: depName=suzuki-shunsuke/ci-info
+    files:
+    - name: ci-info
+      archive: "{{.Name}}"
+  matchfile:
+    url: 'https://github.com/suzuki-shunsuke/{{.Name}}/releases/download/{{.Version}}/{{.Name}}_{{trimPrefix "v" .Version}}_{{.OS}}_{{.Arch}}.tar.gz'
+    version: v0.1.3 # renovate: depName=suzuki-shunsuke/matchfile
+    files:
+    - name: matchfile
+      archive: "{{.Name}}"
+  tfcmt:
+    url: https://github.com/suzuki-shunsuke/{{.Name}}/releases/download/{{.Version}}/{{.Name}}_linux_amd64.tar.gz
+    version: v0.4.0 # renovate: depName=suzuki-shunsuke/tfcmt
+    files:
+    - name: tfcmt
+      archive: tfcmt
+  gomplate:
+    url: "https://github.com/hairyhenderson/gomplate/releases/download/{{.Version}}/gomplate_linux-amd64-slim"
+    version: v3.8.0 # renovate: depName=hairyhenderson/gomplate
+    archive_type: unarchived
+    files:
+    - name: gomplate
+      archive: gomplate
+  tfsec:
+    url: "https://github.com/tfsec/tfsec/releases/download/{{.Version}}/tfsec-{{.OS}}-{{.Arch}}"
+    version: v0.36.12 # renovate: depName=tfsec/tfsec
+    archive_type: unarchived
+    files:
+    - name: tfsec
+      archive: "{{.Name}}"
+  tflint:
+    url: https://github.com/terraform-linters/tflint/releases/download/{{.Version}}/tflint_{{.OS}}_{{.Arch}}.zip
+    version: v0.23.1 # renovate: depName=terraform-linters/tflint
+    files:
+    - name: tflint
+      archive: tflint

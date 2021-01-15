@@ -47,8 +47,9 @@ commands:
       - run:
           name: Install akoi
           command: |
+            set -x
             OS=linux
-            if [ "$(uname)" == Darwin ]; then
+            if [ "$(uname)" = Darwin ]; then
               OS=darwin
             fi
             install_dir=$(dirname "<< parameters.install_path >>")

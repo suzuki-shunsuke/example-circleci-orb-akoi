@@ -1,7 +1,7 @@
 ---
 version: 2.1
-# orbs:
-#   orb: suzuki-shunsuke/akoi@0.1.0
+orbs:
+  akoi: suzuki-shunsuke/akoi@dev:pr-1
 workflows:
   build:
     jobs:
@@ -16,44 +16,9 @@ jobs:
           command: |
             apk add git curl
       - checkout
-      - akoi
+      - akoi/install
       - run:
           name: github-comment --version
           command: |
             export PATH=$PWD/bin:$PATH
             github-comment --version
-
-commands:
-  akoi:
-    description: |
-      Install tools with akoi
-    parameters:
-      install_path:
-        type: string
-        default: /usr/local/bin/akoi
-        description: |
-          File path where akoi is installed
-      version:
-        type: string
-        default: v2.2.1 # renovate: depName=suzuki-shunsuke/akoi
-        description: |
-          The version of akoi. akoi is downloaded from the release page.
-      config:
-        type: string
-        default: ""
-        description: |
-          The akoi's configuration file path.
-    steps:
-      - run:
-          name: Install akoi
-          command: |
-            set -x
-            OS=linux
-            if [ "$(uname)" = Darwin ]; then
-              OS=darwin
-            fi
-            install_dir=$(dirname "<< parameters.install_path >>")
-            test -d "$install_dir" || mkdir "$install_dir"
-            curl --fail -L "https://github.com/suzuki-shunsuke/akoi/releases/download/<< parameters.version >>/akoi_$(echo << parameters.version>> | sed "s/^v//")_${OS}_amd64" -o "<< parameters.install_path >>"
-            chmod a+x "<< parameters.install_path >>"
-            "<< parameters.install_path >>" install <<# parameters.config >>-c "<< parameters.config >>"<</ parameters.config >>
